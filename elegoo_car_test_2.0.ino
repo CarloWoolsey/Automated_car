@@ -3,6 +3,7 @@
  arx:: vector<int>myVector2;
  bool autoState = false;
  int switchState;
+ int index; 
  
 
  const int vry = A0;
@@ -30,7 +31,7 @@ void setup() {
   digitalWrite(ln3, LOW);
   digitalWrite(ln4, HIGH);
   
-  // put your setup code here, to run once:
+
 
 }
 
@@ -49,18 +50,26 @@ void loop() {
     }
     
   }
-  if (autoState == true){
-    for(size_t i = 0; i < myVector1.size(); i ++){
-      analogWrite(enA, myVector1[i]);     
-    }
-    for(size_t j = 0; j < myVector2.size(); j++){
-      analogWrite(enB, myVector2[j]);
-    }
-    if(switchState == LOW){
-      autoState = false;
-    }
-    delay(5);
+  if(autoState == true){
+    index = 0;
+  
+    if (index < myVector1.size()){
+      analogWrite(enA, myVector1[index]);
+      analogWrite(enB, myVector2[index]);
+      index++;
+      delay(5);
+     
+//    for(size_t i = 0; i < myVector1.size(); i ++){
+//      analogWrite(enA, myVector1[i]);     
+//    }
+//    for(size_t j = 0; j < myVector2.size(); j++){
+//      analogWrite(enB, myVector2[j]);
+//    }
+//    if(switchState == LOW){
+//      autoState = false;
+//    }
   }
+}
   
   
 
@@ -118,3 +127,4 @@ int getMotorSpeedLeft(){
   return motorSpeedLeft;
   
 }
+
