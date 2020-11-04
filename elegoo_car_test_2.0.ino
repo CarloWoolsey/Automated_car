@@ -3,7 +3,7 @@
  arx:: vector<int>myVector2;
  bool autoState = false;
  int switchState;
- int index; 
+ int index = 0; 
  
 
  const int vry = A0;
@@ -30,6 +30,7 @@ void setup() {
   digitalWrite(ln2, LOW);
   digitalWrite(ln3, LOW);
   digitalWrite(ln4, HIGH);
+  Serial.begin(9600);
   
 
 
@@ -51,23 +52,28 @@ void loop() {
     
   }
   if(autoState == true){
-    index = 0;
+    
   
     if (index < myVector1.size()){
+//      Serial.print("myVector1: ");
+//      Serial.print(myVector1[index]);
+//      Serial.print("myVector2: ");
+//      Serial.print(myVector2[index]);
+//      Serial.print(" index: ");
+//      Serial.println(index);
       analogWrite(enA, myVector1[index]);
       analogWrite(enB, myVector2[index]);
       index++;
       delay(5);
-     
 //    for(size_t i = 0; i < myVector1.size(); i ++){
 //      analogWrite(enA, myVector1[i]);     
 //    }
 //    for(size_t j = 0; j < myVector2.size(); j++){
 //      analogWrite(enB, myVector2[j]);
 //    }
-//    if(switchState == LOW){
-//      autoState = false;
-//    }
+    if(switchState == LOW){
+      autoState = false;
+    }
   }
 }
   
@@ -127,4 +133,3 @@ int getMotorSpeedLeft(){
   return motorSpeedLeft;
   
 }
-
